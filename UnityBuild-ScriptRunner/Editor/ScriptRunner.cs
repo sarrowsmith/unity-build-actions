@@ -19,8 +19,8 @@ public class ScriptRunner : BuildAction, IPreBuildAction, IPreBuildPerPlatformAc
 
     public override void PerBuildExecute(BuildReleaseType releaseType, BuildPlatform platform, BuildArchitecture architecture, BuildDistribution distribution, System.DateTime buildTime, ref BuildOptions options, string configKey, string buildPath)
     {
-        string resolvedScriptPath = BuildProject.ResolvePath(scriptPath, releaseType, platform, architecture, distribution, buildTime);
-        string resolvedScriptArgs = BuildProject.ResolvePath(scriptArguments, releaseType, platform, architecture, distribution, buildTime);
+        string resolvedScriptPath = FolderOperation.ResolvePath(scriptPath, releaseType, platform, architecture, distribution, buildTime, buildPath);
+        string resolvedScriptArgs = FolderOperation.ResolvePath(scriptArguments, releaseType, platform, architecture, distribution, buildTime, buildPath);
 
         RunScript(resolvedScriptPath, resolvedScriptArgs);
     }
